@@ -3,32 +3,36 @@
 ## Erros Encontrados
 
 1. Regras de negócio:
-> O Cliente pode comprar de outra empresa após a seleção!
+> O Cliente está podendo comprar de outra empresa após a seleção.
 
-> O Saldo total de todas as vendas não está contabilizando a comissão
+> O Saldo total de todas as vendas não está contabilizando a comissão.
 
 2. Código:
-> As classes estão muito grandes e de difícil leitura, oque dificulta a manutençao.
+> As classes estão muito grandes e de difícil leitura, oque dificulta a manutenção.
 
-> Muitas estruturas condicionais que poderiam ser substituidas
+> Muitas estruturas condicionais que poderiam ser substituídas.
 
-> Repetição de código, principalmente em prints
+> Repetição de código, principalmente em prints.
+
+> Falta de Reuso para métodos similares
 
 2. Boas Práticas
-> A Classe Main tem responsabilidade demais
+> A Classe Main tem responsabilidade demais.
 
-> A persistência de dados está acoplada com seus casos de uso
+> A persistência de dados está acoplada com seus casos de uso.
 
-> Muitos métodos stream aglomerados
+> Muitos métodos stream aglomerados.
 
-> Venda acomplada a classe Main
+> Venda acomplada a classe Main.
+
+> Casos de uso de empresa e cliente na mesma classe.
 
 3. Experiência do Usuário
-> Falta feedback ao usuário na hora que o mesmo estar fazendo a compra
+> Falta feedback ao usuário na hora que o mesmo estar fazendo a compra.
 
-> Falta de ordem nos itens listados
+> Falta de ordem nos itens listados.
 
-> Mensagem de Senha ou Usuário incorreto, pouco segura
+> Mensagem de Senha ou Usuário incorreto, pouco segura.
 
 
 ## Cenário:
