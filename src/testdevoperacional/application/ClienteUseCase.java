@@ -3,12 +3,15 @@ package testdevoperacional.application;
 import static testdevoperacional.application.VendaUseCase.criarVenda;
 import static testdevoperacional.utils.MetodosDeStream.filtrarERetornarPrimeiro;
 import static testdevoperacional.utils.Printar.printarBarra;
+import static testdevoperacional.utils.Printar.printarStatusDoCarrinho;
 import static testdevoperacional.utils.Printar.pularLinha;
+import static testdevoperacional.utils.PrintarLista.printarEmpresasEmOrdemDeId;
+import static testdevoperacional.utils.PrintarLista.printarProdutosEmOrdemDeId;
+import static testdevoperacional.utils.PrintarLista.printarResumoDaCompra;
+import static testdevoperacional.utils.PrintarLista.printarVendas;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 import testdevoperacional.domain.Cliente;
 import testdevoperacional.domain.Empresa;
@@ -30,12 +33,15 @@ public class ClienteUseCase {
 		System.out.println("Compra de código: " + venda.getCódigo()
 			+ " na empresa " + venda.getEmpresa().getNome()
 			+ ": ");
-		venda.getItens().stream().forEach(x -> {
-		    System.out.println(x.getId() + " - " + x.getNome()
-			    + "    R$" + x.getPreco());
-		});
+
+		printarVendas(venda);
+		
+		pularLinha();
+
 		System.out.println("Total: R$" + venda.getValor());
+
 		printarBarra();
+		pularLinha();
 	    }
 
 	});
@@ -47,10 +53,9 @@ public class ClienteUseCase {
 	    final Scanner sc, final Usuario usuarioLogado) {
 	System.out.println("Para realizar uma compra, escolha"
 		+ "a empresa onde deseja comprar: ");
-	empresas.stream().sorted(Comparator.comparing(Empresa::getId))
-		.forEach(x -> {
-		    System.out.println(x.getId() + " - " + x.getNome());
-		});
+
+	printarEmpresasEmOrdemDeId(empresas);
+
 	Integer escolhaEmpresa = sc.nextInt();
 	Integer escolhaProduto = null;
 
@@ -67,14 +72,15 @@ public class ClienteUseCase {
 	do {
 	    if (escolhaProduto != null) {
 		System.out.println("Produtos adicionados até o momento");
-		String adicionadoCarrinho = carrinho.isEmpty() ? "Nenhum"
-			: carrinho.stream().map(Produto::getNome)
-				.collect(Collectors.joining(", "));
+		String adicionadoCarrinho = printarStatusDoCarrinho(
+			carrinho);
+
 		System.out.println(adicionadoCarrinho);
 		printarBarra();
 		pularLinha();
 	    }
 	    mostrarProdutosAVenda(produtos, escolhaEmpresa);
+
 	    escolhaProduto = sc.nextInt();
 	    for (Produto produtoSearch : produtos) {
 		if (produtoSearch.getId().equals(escolhaProduto)
@@ -89,13 +95,9 @@ public class ClienteUseCase {
 	    Integer escolhaEmpresa) {
 	System.out.println("Mostrar produtos: " + escolhaEmpresa);
 	System.out.println("Escolha os seus produtos: ");
-	produtos.stream().sorted(Comparator.comparing(Produto::getId))
-		.forEach(x -> {
-		    if (x.getEmpresa().getId().equals(escolhaEmpresa)) {
-			System.out
-				.println(x.getId() + " - " + x.getNome());
-		    }
-		});
+
+	printarProdutosEmOrdemDeId(produtos, escolhaEmpresa);
+
 	System.out.println("0 - Finalizar compra");
     }
 
@@ -106,23 +108,19 @@ public class ClienteUseCase {
 	pularLinha();
 	printarBarra();
 	System.out.println("Resumo da compra: ");
-	carrinho.stream().forEach(x -> {
-	    if (x.getEmpresa().getId().equals(escolhaEmpresa)) {
-		System.out.println(x.getId() + " - " + x.getNome()
-			+ "    R$" + x.getPreco());
-	    }
-	});
+
+	printarResumoDaCompra(carrinho, escolhaEmpresa);
+
 	Empresa empresaEscolhida = filtrarERetornarPrimeiro(empresas,
 		x -> x.getId().equals(escolhaEmpresa));
 
 	Cliente clienteLogado = filtrarERetornarPrimeiro(clientes,
 		x -> x.getUsername().equals(usuarioLogado.getUsername()));
-	
+
 	Venda venda = criarVenda(carrinho, empresaEscolhida, clienteLogado,
 		vendas);
 	pularLinha();
 	System.out.println("Total: R$" + venda.getValor());
 	printarBarra();
     }
-
 }

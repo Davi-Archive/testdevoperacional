@@ -35,7 +35,7 @@ public class BancoDeDados {
     private static Produto produto7 = new Produto(7, "Suco Natural", 30, 10.0, empresa3);
     private static Produto produto8 = new Produto(8, "Sonho", 5, 8.50, empresa);
     private static Produto produto9 = new Produto(9, "Croissant", 7, 6.50, empresa);
-    private static Produto produto10 = new Produto(10, "Ché Gelado", 4, 5.50, empresa);
+    private static Produto produto10 = new Produto(10, "Chá Gelado", 4, 5.50, empresa);
 
     static Cliente cliente = new Cliente("07221134049", "Allan da Silva",
 	    "cliente", 20);

@@ -8,8 +8,6 @@ import static testdevoperacional.infrastructure.BancoDeDados.pegarListaDeCliente
 import static testdevoperacional.infrastructure.BancoDeDados.pegarListaDeEmpresas;
 import static testdevoperacional.infrastructure.BancoDeDados.pegarListaDeProdutos;
 import static testdevoperacional.infrastructure.BancoDeDados.pegarListaDeUsuarios;
-import static testdevoperacional.utils.Printar.printarBarra;
-import static testdevoperacional.utils.Printar.pularLinha;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -131,9 +129,5 @@ public class Main {
 	} else
 	    System.out.println(
 		    "Usuário não encontrado e/ou Senha incorreta");
-	executar(usuariosSearch, clientes, empresas, produtos, carrinho,
-		vendas);
-	printarBarra();
-	pularLinha();
     }
 }

@@ -8,7 +8,10 @@ public class MetodosDeStream {
 
     public static <T> T filtrarERetornarPrimeiro(List<T> listToFilter,
 	    Predicate<T> mapper) {
-	return listToFilter.stream().filter(mapper)
-		.collect(Collectors.toList()).get(0);
+	if (!listToFilter.isEmpty())
+	    return listToFilter.stream().filter(mapper)
+		    .collect(Collectors.toList()).get(0);
+	return null;
     }
+
 }
