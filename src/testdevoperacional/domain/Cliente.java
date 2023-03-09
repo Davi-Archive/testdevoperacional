@@ -1,3 +1,4 @@
+package testdevoperacional.domain;
 
 public class Cliente {
 	private String cpf;

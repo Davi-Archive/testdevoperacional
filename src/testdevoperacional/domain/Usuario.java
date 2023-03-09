@@ -1,3 +1,4 @@
+package testdevoperacional.domain;
 
 public class Usuario {
 	private String username;

@@ -1,3 +1,4 @@
+package testdevoperacional.domain;
 
 public class Empresa {
 	private Integer id;

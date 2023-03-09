@@ -1,3 +1,4 @@
+package testdevoperacional.domain;
 import java.util.List;
 
 public class Venda {
