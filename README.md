@@ -1,6 +1,38 @@
 # Teste Dev./Operacional
 
+## Erros Encontrados
+
+1. Regras de negócio:
+> O Cliente não pode comprar de outra empresa após a seleção
+
+> O Saldo total de todas as vendas não está contabilizando a comissão
+
+2. Código:
+> As classes estão muito grandes e de difícil leitura, oque dificulta a manutençao.
+
+> Muitas estruturas condicionais que poderiam ser substituidas
+
+> Repetição de código, principalmente em prints
+
+2. Boas Práticas
+> A Classe Main tem responsabilidade demais
+
+> A persistência de dados está acoplada com seus casos de uso
+
+> Muitos métodos stream aglomerados
+
+> Venda acomplada a classe Main
+
+3. Experiência do Usuário
+> Falta feedback ao usuário na hora que o mesmo estar fazendo a compra
+
+> Falta de ordem nos itens listados
+
+> Mensagem de Senha ou Usuário incorreto, pouco segura
+
+
 ## Cenário:
+
 Uma empresa solicitou um sistema simples de compra. Nesse sistema o cliente pode fazer compras em algumas empresas de acordo com os produtos que as mesmas têm disponível em estoque, além disso ele também pode ver as suas compras. Por sua vez a empresa pode ver as suas vendas e os seus produtos.
 Algumas das regras de negócios são:
 
