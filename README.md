@@ -16,7 +16,7 @@
 
 > Falta de Reuso para métodos similares
 
-2. Boas Práticas
+3. Boas Práticas
 > A Classe Main tem responsabilidade demais.
 
 > A persistência de dados está acoplada com seus casos de uso.
@@ -27,7 +27,7 @@
 
 > Casos de uso de empresa e cliente na mesma classe.
 
-3. Experiência do Usuário
+4. Experiência do Usuário
 > Falta feedback ao usuário na hora que o mesmo estar fazendo a compra.
 
 > Falta de ordem nos itens listados.
