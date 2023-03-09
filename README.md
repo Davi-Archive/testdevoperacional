@@ -28,7 +28,7 @@
 > Casos de uso de empresa e cliente na mesma classe.
 
 4. Experiência do Usuário
-> Falta feedback ao usuário na hora que o mesmo estar fazendo a compra.
+> Falta feedback ao usuário na hora que o mesmo esta fazendo a compra.
 
 > Falta de ordem nos itens listados.
 
