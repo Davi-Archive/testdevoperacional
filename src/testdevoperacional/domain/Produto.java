@@ -7,7 +7,12 @@ public class Produto {
 	private Double preco;
 	private Empresa empresa;
 
-	public Produto(Integer id,String nome, Integer quantidade, Double preco, Empresa empresa) {
+	public Produto(
+		final Integer id,
+		final String nome, 
+		final Integer quantidade, 
+		final Double preco, 
+		final Empresa empresa) {
 		super();
 		this.id = id;
 		this.nome = nome;

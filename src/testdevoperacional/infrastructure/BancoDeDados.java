@@ -13,8 +13,8 @@ import testdevoperacional.domain.Venda;
 public class BancoDeDados {
     // SIMULANDO BANCO DE DADOS
 
-    List<Produto> carrinho = new ArrayList<Produto>();
-    List<Venda> vendas = new ArrayList<Venda>();
+    List<Produto> carrinho = new ArrayList<>();
+    List<Venda> vendas = new ArrayList<>();
 
     private static Empresa empresa = new Empresa(2, "SafeWay Padaria", "30021423000159",
 	    0.15, 0.0);
