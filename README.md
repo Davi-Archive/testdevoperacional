@@ -3,7 +3,7 @@
 ## Erros Encontrados
 
 1. Regras de negócio:
-> O Cliente não pode comprar de outra empresa após a seleção
+> O Cliente pode comprar de outra empresa após a seleção!
 
 > O Saldo total de todas as vendas não está contabilizando a comissão
 
