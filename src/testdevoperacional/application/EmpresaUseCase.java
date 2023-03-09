@@ -1,5 +1,8 @@
 package testdevoperacional.application;
 
+import static testdevoperacional.utils.Printar.printarBarra;
+import static testdevoperacional.utils.Printar.pularLinha;
+
 import java.util.List;
 
 import testdevoperacional.domain.Produto;
@@ -7,44 +10,39 @@ import testdevoperacional.domain.Usuario;
 import testdevoperacional.domain.Venda;
 
 public class EmpresaUseCase {
+    
     public static void verProdutosEmpresa(List<Produto> produtos,
 	    Usuario usuarioLogado) {
-	System.out.println();
-	System.out.println(
-		"************************************************************");
+	pularLinha();
+	printarBarra();
 	System.out.println("MEUS PRODUTOS");
 	produtos.stream().forEach(produto -> {
 	    if (produto.getEmpresa().getId()
 		    .equals(usuarioLogado.getEmpresa().getId())) {
-		System.out.println(
-			"************************************************************");
+		printarBarra();
 		System.out.println("Código: " + produto.getId());
 		System.out.println("Produto: " + produto.getNome());
 		System.out.println("Quantidade em estoque: "
 			+ produto.getQuantidade());
 		System.out.println("Valor: R$" + produto.getPreco());
-		System.out.println(
-			"************************************************************");
+		printarBarra();
 	    }
 
 	});
 	System.out.println(
 		"Saldo Empresa: " + usuarioLogado.getEmpresa().getSaldo());
-	System.out.println(
-		"************************************************************");
+	printarBarra();
     }
 
     public static void listarVendasEmpresa(List<Venda> vendas,
 	    Usuario usuarioLogado) {
-	System.out.println();
-	System.out.println(
-		"************************************************************");
+	pularLinha();
+	printarBarra();
 	System.out.println("VENDAS EFETUADAS");
 	vendas.stream().forEach(venda -> {
 	    if (venda.getEmpresa().getId()
 		    .equals(usuarioLogado.getEmpresa().getId())) {
-		System.out.println(
-			"************************************************************");
+		printarBarra();
 		System.out.println("Venda de código: " + venda.getCódigo()
 			+ " no CPF " + venda.getCliente().getCpf() + ": ");
 		venda.getItens().stream().forEach(x -> {
@@ -56,14 +54,12 @@ public class EmpresaUseCase {
 			+ venda.getComissaoSistema());
 		System.out.println("Total Líquido  para empresa"
 			+ (venda.getValor() - venda.getComissaoSistema()));
-		System.out.println(
-			"************************************************************");
+		printarBarra();
 	    }
 
 	});
 	System.out.println(
 		"Saldo Empresa: " + usuarioLogado.getEmpresa().getSaldo());
-	System.out.println(
-		"************************************************************");
+	printarBarra();
     }
 }

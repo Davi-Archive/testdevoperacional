@@ -8,6 +8,8 @@ import static testdevoperacional.infrastructure.BancoDeDados.pegarListaDeCliente
 import static testdevoperacional.infrastructure.BancoDeDados.pegarListaDeEmpresas;
 import static testdevoperacional.infrastructure.BancoDeDados.pegarListaDeProdutos;
 import static testdevoperacional.infrastructure.BancoDeDados.pegarListaDeUsuarios;
+import static testdevoperacional.utils.Printar.printarBarra;
+import static testdevoperacional.utils.Printar.pularLinha;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,15 +66,13 @@ public class Main {
 		escolha = sc.nextInt();
 		switch (escolha) {
 		case 1: {
-		    listarVendasEmpresa(vendas,
-			    usuarioLogado);
+		    listarVendasEmpresa(vendas, usuarioLogado);
 		    executar(usuarios, clientes, empresas, produtos,
 			    carrinho, vendas);
 		    break;
 		}
 		case 2: {
-		    verProdutosEmpresa(produtos,
-			    usuarioLogado);
+		    verProdutosEmpresa(produtos, usuarioLogado);
 		    executar(usuarios, clientes, empresas, produtos,
 			    carrinho, vendas);
 		    break;
@@ -95,14 +95,13 @@ public class Main {
 		System.out.println("1 - Realizar Compras");
 		System.out.println("2 - Ver Compras");
 		System.out.println("0 - Deslogar");
-		
+
 		escolha = sc.nextInt();
-		
+
 		switch (escolha) {
 		case 1: {
-		    realizarCompraCliente(clientes,
-			    empresas, produtos, carrinho, vendas, sc,
-			    usuarioLogado);
+		    realizarCompraCliente(clientes, empresas, produtos,
+			    carrinho, vendas, sc, usuarioLogado);
 		    executar(usuarios, clientes, empresas, produtos,
 			    carrinho, vendas);
 		    break;
@@ -132,5 +131,9 @@ public class Main {
 	} else
 	    System.out.println(
 		    "Usuário não encontrado e/ou Senha incorreta");
+	executar(usuariosSearch, clientes, empresas, produtos, carrinho,
+		vendas);
+	printarBarra();
+	pularLinha();
     }
 }
