@@ -1,5 +1,7 @@
 package testdevoperacional.application;
 
+import static testdevoperacional.application.VendaUseCase.criarVenda;
+import static testdevoperacional.utils.MetodosDeStream.filtrarERetornarPrimeiro;
 import static testdevoperacional.utils.Printar.printarBarra;
 import static testdevoperacional.utils.Printar.pularLinha;
 
@@ -59,20 +61,6 @@ public class ClienteUseCase {
 	carrinho.clear();
     }
 
-    public static Venda criarVenda(List<Produto> carrinho, Empresa empresa,
-	    Cliente cliente, List<Venda> vendas) {
-	Double total = carrinho.stream().mapToDouble(Produto::getPreco)
-		.sum();
-	Double comissaoSistema = total * empresa.getTaxa();
-	int idVenda = vendas.isEmpty() ? 1
-		: vendas.get(vendas.size() - 1).getCódigo() + 1;
-	Venda venda = new Venda(idVenda, carrinho.stream().toList(), total,
-		comissaoSistema, empresa, cliente);
-	empresa.setSaldo(empresa.getSaldo() + total);
-	vendas.add(venda);
-	return venda;
-    }
-
     private static void selecionarProduto(final List<Produto> produtos,
 	    final List<Produto> carrinho, final Scanner sc,
 	    Integer escolhaEmpresa, Integer escolhaProduto) {
@@ -124,12 +112,12 @@ public class ClienteUseCase {
 			+ "    R$" + x.getPreco());
 	    }
 	});
-	Empresa empresaEscolhida = empresas.stream()
-		.filter(x -> x.getId().equals(escolhaEmpresa))
-		.collect(Collectors.toList()).get(0);
-	Cliente clienteLogado = clientes.stream().filter(
-		x -> x.getUsername().equals(usuarioLogado.getUsername()))
-		.collect(Collectors.toList()).get(0);
+	Empresa empresaEscolhida = filtrarERetornarPrimeiro(empresas,
+		x -> x.getId().equals(escolhaEmpresa));
+
+	Cliente clienteLogado = filtrarERetornarPrimeiro(clientes,
+		x -> x.getUsername().equals(usuarioLogado.getUsername()));
+	
 	Venda venda = criarVenda(carrinho, empresaEscolhida, clienteLogado,
 		vendas);
 	pularLinha();

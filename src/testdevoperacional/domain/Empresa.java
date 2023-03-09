@@ -20,7 +20,7 @@ public class Empresa {
 	this.taxa = taxa;
 	this.saldo = saldo;
     }
-
+    
     public Integer getId() {
 	return id;
     }
