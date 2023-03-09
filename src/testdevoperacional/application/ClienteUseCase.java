@@ -39,26 +39,35 @@ public class ClienteUseCase {
 	});
     }
 
-    public static void realizarCompraCliente(List<Cliente> clientes,
-	    List<Empresa> empresas, List<Produto> produtos,
-	    List<Produto> carrinho, List<Venda> vendas, Scanner sc,
-	    Usuario usuarioLogado) {
-	System.out.println(
-		"Para realizar uma compra, escolha a empresa onde deseja comprar: ");
+    public static void realizarCompraCliente(final List<Cliente> clientes,
+	    final List<Empresa> empresas, final List<Produto> produtos,
+	    final List<Produto> carrinho, final List<Venda> vendas,
+	    final Scanner sc, final Usuario usuarioLogado) {
+	System.out.println("Para realizar uma compra, escolha"
+		+ "a empresa onde deseja comprar: ");
 	empresas.stream().sorted(Comparator.comparing(Empresa::getId))
 		.forEach(x -> {
 		    System.out.println(x.getId() + " - " + x.getNome());
 		});
 	Integer escolhaEmpresa = sc.nextInt();
-	Integer escolhaProduto = -1;
+	Integer escolhaProduto = null;
 	do {
 	    System.out.println("Escolha os seus produtos: ");
-	    produtos.stream().forEach(x -> {
-		if (x.getEmpresa().getId().equals(escolhaEmpresa)) {
-		    System.out.println(x.getId() + " - " + x.getNome());
-		}
-	    });
+	    produtos.stream().sorted(Comparator.comparing(Produto::getId))
+		    .forEach(x -> {
+			if (x.getEmpresa().getId()
+				.equals(escolhaEmpresa)) {
+			    System.out.println(
+				    x.getId() + " - " + x.getNome());
+			}
+		    });
 	    System.out.println("0 - Finalizar compra");
+	    System.out.println("**********************************"
+		    + "**************************");
+	    if (escolhaProduto != null) {
+		System.out.println("Produtos adicionados");
+		carrinho.stream().forEach(x-> System.out.println(x.getNome()));
+	    }
 	    escolhaProduto = sc.nextInt();
 	    for (Produto produtoSearch : produtos) {
 		if (produtoSearch.getId().equals(escolhaProduto))

@@ -1,5 +1,9 @@
 package testdevoperacional;
 
+import static testdevoperacional.application.ClienteUseCase.realizarCompraCliente;
+import static testdevoperacional.application.ClienteUseCase.verCompraCliente;
+import static testdevoperacional.application.EmpresaUseCase.listarVendasEmpresa;
+import static testdevoperacional.application.EmpresaUseCase.verProdutosEmpresa;
 import static testdevoperacional.infrastructure.BancoDeDados.pegarListaDeClientes;
 import static testdevoperacional.infrastructure.BancoDeDados.pegarListaDeEmpresas;
 import static testdevoperacional.infrastructure.BancoDeDados.pegarListaDeProdutos;
@@ -10,8 +14,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import testdevoperacional.application.ClienteUseCase;
-import testdevoperacional.application.EmpresaUseCase;
 import testdevoperacional.domain.Cliente;
 import testdevoperacional.domain.Empresa;
 import testdevoperacional.domain.Produto;
@@ -22,8 +24,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-	List<Produto> carrinho = new ArrayList<Produto>();
-	List<Venda> vendas = new ArrayList<Venda>();
+	List<Produto> carrinho = new ArrayList<>();
+	List<Venda> vendas = new ArrayList<>();
 
 	List<Usuario> usuarios = pegarListaDeUsuarios();
 	List<Cliente> clientes = pegarListaDeClientes();
@@ -37,7 +39,7 @@ public class Main {
 	    final List<Produto> produtos, final List<Produto> carrinho,
 	    final List<Venda> vendas) {
 	Scanner sc = new Scanner(System.in);
-	Integer escolha = sc.nextInt();
+	Integer escolha = null;
 
 	System.out.println("Entre com seu usuário e senha:");
 	System.out.print("Usuário: ");
@@ -59,60 +61,69 @@ public class Main {
 		System.out.println("1 - Listar vendas");
 		System.out.println("2 - Ver produtos");
 		System.out.println("0 - Deslogar");
-
+		escolha = sc.nextInt();
 		switch (escolha) {
 		case 1: {
-		    EmpresaUseCase.listarVendasEmpresa(vendas,
+		    listarVendasEmpresa(vendas,
 			    usuarioLogado);
 		    executar(usuarios, clientes, empresas, produtos,
 			    carrinho, vendas);
+		    break;
 		}
 		case 2: {
-		    EmpresaUseCase.verProdutosEmpresa(produtos,
+		    verProdutosEmpresa(produtos,
 			    usuarioLogado);
 		    executar(usuarios, clientes, empresas, produtos,
 			    carrinho, vendas);
+		    break;
 		}
 		case 0: {
 		    executar(usuarios, clientes, empresas, produtos,
 			    carrinho, vendas);
+		    break;
 		}
 		default: {
 		    System.out.println(
 			    "Opção não encontrada, Empresa deslogada.");
 		    executar(usuarios, clientes, empresas, produtos,
 			    carrinho, vendas);
+		    break;
 		}
 		}
 
 	    } else {
-		System.out.println("1 - Relizar Compras");
+		System.out.println("1 - Realizar Compras");
 		System.out.println("2 - Ver Compras");
 		System.out.println("0 - Deslogar");
-
+		
+		escolha = sc.nextInt();
+		
 		switch (escolha) {
 		case 1: {
-		    ClienteUseCase.realizarCompraCliente(clientes,
+		    realizarCompraCliente(clientes,
 			    empresas, produtos, carrinho, vendas, sc,
 			    usuarioLogado);
 		    executar(usuarios, clientes, empresas, produtos,
 			    carrinho, vendas);
+		    break;
 		}
 		case 2: {
-		    ClienteUseCase.verCompraCliente(vendas, usuarioLogado);
+		    verCompraCliente(vendas, usuarioLogado);
 		    executar(usuarios, clientes, empresas, produtos,
 			    carrinho, vendas);
+		    break;
 		}
 		case 0: {
 		    executar(usuarios, clientes, empresas, produtos,
 			    carrinho, vendas);
-
+		    break;
 		}
 		default: {
 		    System.out.println(
 			    "Opção não encontrada, Usuário deslogada.");
 		    executar(usuarios, clientes, empresas, produtos,
 			    carrinho, vendas);
+		    break;
 		}
 
 		}
@@ -121,6 +132,5 @@ public class Main {
 	} else
 	    System.out.println(
 		    "Usuário não encontrado e/ou Senha incorreta");
-
     }
 }
