@@ -3,6 +3,7 @@ package testdevoperacional.application;
 import static testdevoperacional.application.VendaUseCase.criarVenda;
 import static testdevoperacional.utils.MetodosDeStream.filtrarERetornarPrimeiro;
 import static testdevoperacional.utils.Printar.printarBarra;
+import static testdevoperacional.utils.Printar.printarCodigoDaCompraEEmpresa;
 import static testdevoperacional.utils.Printar.printarStatusDoCarrinho;
 import static testdevoperacional.utils.Printar.pularLinha;
 import static testdevoperacional.utils.PrintarLista.printarEmpresasEmOrdemDeId;
@@ -30,12 +31,11 @@ public class ClienteUseCase {
 	    if (venda.getCliente().getUsername()
 		    .equals(usuarioLogado.getUsername())) {
 		printarBarra();
-		System.out.println("Compra de código: " + venda.getCódigo()
-			+ " na empresa " + venda.getEmpresa().getNome()
-			+ ": ");
+
+		printarCodigoDaCompraEEmpresa(venda);
 
 		printarVendas(venda);
-		
+
 		pularLinha();
 
 		System.out.println("Total: R$" + venda.getValor());

@@ -11,8 +11,8 @@ public class Empresa {
 	super();
     }
 
-    public Empresa(Integer id, String nome, String cnpj, Double taxa,
-	    Double saldo) {
+    public Empresa(final Integer id, final String nome, final String cnpj,
+	    final Double taxa, final Double saldo) {
 	super();
 	this.id = id;
 	this.nome = nome;
@@ -20,7 +20,7 @@ public class Empresa {
 	this.taxa = taxa;
 	this.saldo = saldo;
     }
-    
+
     public Integer getId() {
 	return id;
     }

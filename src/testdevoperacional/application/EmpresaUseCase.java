@@ -14,7 +14,7 @@ import testdevoperacional.domain.Venda;
 public class EmpresaUseCase {
 
     private static Double SALDO_TOTAL_APOS_COMISSAO = 0d;
-    
+
     public static void verProdutosEmpresa(List<Produto> produtos,
 	    Usuario usuarioLogado) {
 	pularLinha();
@@ -37,7 +37,6 @@ public class EmpresaUseCase {
 	printarBarra();
     }
 
-
     public static void listarVendasEmpresa(List<Venda> vendas,
 	    Usuario usuarioLogado) {
 	SALDO_TOTAL_APOS_COMISSAO = 0d;
@@ -53,18 +52,25 @@ public class EmpresaUseCase {
 
 		printarVendas(venda);
 
-		System.out.println("Total Venda: R$" + venda.getValor());
-		System.out.println("Total Taxa a ser paga: R$"
-			+ venda.getComissaoSistema());
-		System.out.println("Total Líquido  para empresa: R$"
-			+ (venda.getValor() - venda.getComissaoSistema()));
+		printarCalculosDaVenda(venda);
+
 		printarBarra();
 
-		SALDO_TOTAL_APOS_COMISSAO += (venda.getValor() - venda.getComissaoSistema());
+		SALDO_TOTAL_APOS_COMISSAO += (venda.getValor()
+			- venda.getComissaoSistema());
 	    }
 	});
 
-	System.out.println("Saldo Empresa: R$" + SALDO_TOTAL_APOS_COMISSAO);
+	System.out
+		.println("Saldo Empresa: R$" + SALDO_TOTAL_APOS_COMISSAO);
 	printarBarra();
+    }
+
+    private static void printarCalculosDaVenda(Venda venda) {
+	System.out.println("Total Venda: R$" + venda.getValor());
+	System.out.println(
+		"Total Taxa a ser paga: R$" + venda.getComissaoSistema());
+	System.out.println("Total Líquido  para empresa: R$"
+		+ (venda.getValor() - venda.getComissaoSistema()));
     }
 }
